@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "three": "^0.169.0",
+    "three-gpu-pathtracer": "^0.0.23"
+  },
+  "devDependencies": {
+    "vite": "^5.4.9"
+  },
+  "name": "ld2studio-three-editor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "Laurent Dethoor",
+  "license": "MIT",
+  "description": "3D editor based on Three.js"
+  
+}
