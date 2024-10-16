@@ -13,7 +13,8 @@
     "start": "npm run dev",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --port 4000",
+    "deploy": "sh ./deploy.sh"
   },
   "keywords": [],
   "author": "Laurent Dethoor",
