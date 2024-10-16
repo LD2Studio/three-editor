@@ -634,8 +634,8 @@ Editor.prototype = {
 
 	fromJSON: async function ( json ) {
 
-		var loader = new THREE.ObjectLoader();
-		var camera = await loader.parseAsync( json.camera );
+		const loader = new THREE.ObjectLoader();
+		const camera = await loader.parseAsync( json.camera );
 
 		const existingUuid = this.camera.uuid;
 		const incomingUuid = camera.uuid;
@@ -653,6 +653,9 @@ Editor.prototype = {
 		this.scripts = json.scripts;
 
 		this.setScene( await loader.parseAsync( json.scene ) );
+
+		const viewportCamera = await loader.parseAsync( json.viewportCamera );
+		this.setViewportCamera( viewportCamera.uuid );
 
 		if ( json.environment === 'ModelViewer' ) {
 
@@ -703,7 +706,8 @@ Editor.prototype = {
 				toneMapping: this.config.getKey( 'project/renderer/toneMapping' ),
 				toneMappingExposure: this.config.getKey( 'project/renderer/toneMappingExposure' )
 			},
-			camera: this.viewportCamera.toJSON(),
+			camera: this.camera.toJSON(),
+			viewportCamera: this.viewportCamera.toJSON(),
 			scene: this.scene.toJSON(),
 			scripts: this.scripts,
 			history: this.history.toJSON(),
