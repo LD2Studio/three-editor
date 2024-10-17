@@ -656,8 +656,9 @@ Editor.prototype = {
 
 		this.setScene( await loader.parseAsync( json.scene ) );
 
-		const viewportCamera = await loader.parseAsync( json.viewportCamera );
-		this.setViewportCamera( viewportCamera.uuid );
+		this.viewportCamera = await loader.parseAsync( json.project.viewportCamera );
+		this.setViewportCamera( this.viewportCamera.uuid );
+		this.signals.objectChanged.dispatch( this.viewportCamera );
 
 		if ( json.environment === 'ModelViewer' ) {
 
@@ -705,13 +706,13 @@ Editor.prototype = {
 				version: EDITOR_VERSION
 			},
 			project: {
+				viewportCamera: this.viewportCamera.toJSON(),
 				shadows: this.config.getKey( 'project/renderer/shadows' ),
 				shadowType: this.config.getKey( 'project/renderer/shadowType' ),
 				toneMapping: this.config.getKey( 'project/renderer/toneMapping' ),
 				toneMappingExposure: this.config.getKey( 'project/renderer/toneMappingExposure' )
 			},
 			camera: this.camera.toJSON(),
-			viewportCamera: this.viewportCamera.toJSON(),
 			scene: this.scene.toJSON(),
 			scripts: this.scripts,
 			history: this.history.toJSON(),

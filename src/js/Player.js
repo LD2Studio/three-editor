@@ -1,5 +1,4 @@
 import { UIPanel } from './libs/ui.js';
-import { APP } from './libs/app.js';
 
 function Player( editor ) {
 

@@ -1,6 +1,5 @@
 import { UIBreak, UIButton, UIInteger, UIPanel, UIRow, UIText } from './libs/ui.js';
 
-import { APP } from './libs/app.js';
 
 function SidebarProjectVideo( editor ) {
 
