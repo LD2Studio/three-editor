@@ -170,7 +170,7 @@ function MenubarFile( editor ) {
 		.onClick( function () {
 
 			const json = editor.toJSON();
-			const blob = new Blob( [ JSON.stringify( json ) ], { type: 'application/json' } );
+			const blob = new Blob( [ JSON.stringify( json, null, "\t" ) ], { type: 'application/json' } );
 			editor.utils.save( blob, 'project.json' );
 
 		} );

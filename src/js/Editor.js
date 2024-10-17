@@ -7,7 +7,9 @@ import { Strings } from './Strings.js';
 import { Storage as _Storage } from './Storage.js';
 import { Selector } from './Selector.js';
 
-var _DEFAULT_CAMERA = new THREE.PerspectiveCamera( 50, 1, 0.01, 1000 );
+const EDITOR_VERSION = '0.0.1';
+
+const _DEFAULT_CAMERA = new THREE.PerspectiveCamera( 50, 1, 0.01, 1000 );
 _DEFAULT_CAMERA.name = 'Camera';
 _DEFAULT_CAMERA.position.set( 0, 5, 10 );
 _DEFAULT_CAMERA.lookAt( new THREE.Vector3() );
@@ -634,7 +636,7 @@ Editor.prototype = {
 
 	fromJSON: async function ( json ) {
 
-		const loader = new THREE.ObjectLoader();
+		const loader = new THREE.ObjectLoader(); // A loader for loading a JSON resource in the JSON Object/Scene format
 		const camera = await loader.parseAsync( json.camera );
 
 		const existingUuid = this.camera.uuid;
@@ -699,7 +701,9 @@ Editor.prototype = {
 
 		return {
 
-			metadata: {},
+			metadata: {
+				version: EDITOR_VERSION
+			},
 			project: {
 				shadows: this.config.getKey( 'project/renderer/shadows' ),
 				shadowType: this.config.getKey( 'project/renderer/shadowType' ),
